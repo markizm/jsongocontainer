@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>CP URLs</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link href="assets/css/my.css" rel="stylesheet">
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+         <script>
+          $(document).ready( function() {
+                 $.ajax({
+                         url: "/get",
+                         dataType: "json",
+                         success: function(data) {
+                                 console.log(JSON.stringify(data))
+                                 $(data.Data).each(function(index, test) {
+                                         $.each(test, function(key, value) {
+                                           $("table").append("<tr><td>" + value.Name + "</td><td><a href src='" + value.Test_url + "'>" + value.Test_url + "</a></td></tr>");
+                                         });
+                                 });
+                          },
+                         error: function(errorMsg) {
+                                 alert(errorMsg.statusText);
+                          }
+                   });
+          });
+         </script>
+
+  </head>
+  <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	 <div class="container">
+	  <div class="navbar-header">
+           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">	
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>	
+            <span class="icon-bar"></span>	
+            <span class="icon-bar"></span>	
+           </button>
+           <a class="navbar-brand" href="#">Catchpoint URLs</a>
+          </div>
+          <div class="collapse navbar-collapse navbar-header-collapse">
+           <ul class="nav navbar-nav navbar-right">
+	    <li class="dropdown">
+	     <a class="dropdown-menu" data-toggle="dropdown" href="#">
+	      <span id="username">{{.Name}}</span> <span class="caret"></span>
+	      <a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a> 
+	     </a> 
+	   </li>
+	   </ul>
+          </div>
+         </div>
+	</div>
+       <div>
+	 <div class="container">
+	  <table id="api" class="table">
+	   <tr>
+	    <th class="Name">Test Name</th>
+	    <th class="Test_url">URL</th>
+	   </tr>
+	  </table>	
+          <!-- <a href="#" class="btn btn-primary">In Progress</a> -->
+	  <!-- <a href="#" class="btn btn-primary">Waiting for qa</a> -->
+	 </div>
+	</div>
+
+	<div class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+	 <div class="container">
+	  <div class="navbar-text pull-left">
+	   <p>Maintained by Site Reliability Engineers</p>
+	  </div>
+	  <div class="navbar-text pull-right">
+           <img src="assets/png/yp_logo.png">
+	  </div>
+	 </div>
+	</div>
+         
+	 <div class="modal fade" id="about" role="dialog">
+          <div class="modal-dialog">
+           <div class="modal-content">
+            <form class="form-horizontal" role="form">
+             <div class="modal-body">
+              <p>This is a list of URLs we are testing against in Catchpoint.</p>
+              <p>For more information, please email magaling.markizm@gmail.com</p>
+             </div>
+            </form>
+           </div>
+          </div>
+         </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+  </body>
+</html>
